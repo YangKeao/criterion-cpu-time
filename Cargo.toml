@@ -7,5 +7,5 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-criterion = "0.3"
+criterion = { git = "https://github.com/YangKeao/criterion.rs.git", branch = "yangkeao/reduce_clap_version", features=['real_blackbox'] }
 libc = "0.2"
