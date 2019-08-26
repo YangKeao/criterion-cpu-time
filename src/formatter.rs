@@ -1,5 +1,5 @@
-use criterion::Throughput;
 use criterion::measurement::ValueFormatter;
+use criterion::Throughput;
 
 pub(crate) struct DurationFormatter;
 impl DurationFormatter {
