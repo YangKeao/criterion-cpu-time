@@ -43,19 +43,8 @@ impl DurationFormatter {
         unit
     }
 }
-impl ValueFormatter for DurationFormatter {
-    fn scale_throughputs(
-        &self,
-        typical: f64,
-        throughput: &Throughput,
-        values: &mut [f64],
-    ) -> &'static str {
-        match *throughput {
-            Throughput::Bytes(bytes) => self.bytes_per_second(bytes as f64, typical, values),
-            Throughput::Elements(elems) => self.elements_per_second(elems as f64, typical, values),
-        }
-    }
 
+impl ValueFormatter for DurationFormatter {
     fn scale_values(&self, ns: f64, values: &mut [f64]) -> &'static str {
         let (factor, unit) = if ns < 10f64.powi(0) {
             (10f64.powi(3), "ps")
@@ -74,6 +63,18 @@ impl ValueFormatter for DurationFormatter {
         }
 
         unit
+    }
+
+    fn scale_throughputs(
+        &self,
+        typical: f64,
+        throughput: &Throughput,
+        values: &mut [f64],
+    ) -> &'static str {
+        match *throughput {
+            Throughput::Bytes(bytes) => self.bytes_per_second(bytes as f64, typical, values),
+            Throughput::Elements(elems) => self.elements_per_second(elems as f64, typical, values),
+        }
     }
 
     fn scale_for_machines(&self, _values: &mut [f64]) -> &'static str {
